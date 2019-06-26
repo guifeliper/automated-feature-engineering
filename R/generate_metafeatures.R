@@ -4,20 +4,17 @@
 library(mfe)
 library(parallel)
 
-
-setwd('/Users/guifeliper/Thesis/autoML/automated-feature-engineering/R/Data')
-
 # Definition of datasets
-datasets <- list.files('./base/',full.names = FALSE)
+datasets <- list.files('./data/base/',full.names = FALSE)
 
 # Get meta knowledge
-metadata <- read.csv(paste(sep="", "./metadata.csv"), header=TRUE, sep=",", row.names = 1)
+metadata <- read.csv(paste(sep="", "./data/metadata.csv"), header=TRUE, sep=",", row.names = 1)
 
 
 #Process the metafeatures
 creating_metafeatures <- function(ds, type, groups) {
   print(paste("Processing", type,  "for", ds, "..."))
-  d <- read.csv(paste0("./", type , "/", ds), header=TRUE, sep=",")
+  d <- read.csv(paste0("./data/", type , "/", ds), header=TRUE, sep=",")
   
   d.features <- subset(d, select=-c(class))
   d.labels <- d[,'class']
